@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<scene version="0.5.0">
+<!--+========================================+
+    |                 Camera                 | 
+    +========================================+-->
+	<sensor type="perspective" >
+		<float name="fov" value="7.3"/>		
+		<transform name="toWorld">
+			<lookat target="0,0,0" origin="120,0,0" up="0,1,0"/>
+		</transform>
+ 		<film type="hdrfilm">	
+			<integer name="height" value="512"/>
+            <integer name="width" value="512"/>
+
+			<rfilter type="gaussian"/>
+			<boolean name="banner" value="false"/>
+		</film>
+
+	</sensor>
+
+
+<!--+========================================+
+    |               Integrator               | 
+    +========================================+-->
+	<integrator type="sppm">
+		<integer name="maxPasses" value="50"/>
+	</integrator>
+
+
+<!--+========================================+
+    |             Scene Setup                | 
+    +========================================+-->
+    <include filename="./scene_setup.xml"/>
+
+
+<!--+========================================+
+    |           Darkfield Illumination       | 
+    +========================================+-->
+    <include filename="../component/lighting_darkfield_illumination.xml"/>
+
+
+<!--+========================================+
+    |                 Orb                    | 
+    +========================================+-->
+    <shape type="obj" id="external_bump_sphere">
+    	<string name="filename" value="../object/defects/defect_bump_h0.02.obj"/>
+    	<ref id="dielectric"/>
+    </shape>
+	
+	<!--1%:6.7300;	2%:6.6620;	3%:6.5941;	5%:6.4581 -->
+	<shape type="sphere" id="interior_sphere">
+		<float name="radius" value="6.6620"/>
+		<boolean name="flipNormals" value="true"/>
+		<ref id="dielectric"/>
+	</shape>
+
+
+</scene>

@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<scene version="0.5.0">
+<!--+========================================+
+    |                 Camera                 | 
+    +========================================+-->
+	<sensor type="perspective" >
+		<float name="fov" value="3.5"/>		
+		<transform name="toWorld">
+			<lookat target="0,0,0" origin="120,0,0" up="0,1,0"/>
+			<translate x="-3" y="-3.192" z="-3.29"/>
+		</transform>
+ 		<film type="hdrfilm">	
+			<integer name="height" value="512"/>
+            <integer name="width" value="512"/>
+
+			<rfilter type="gaussian"/>
+			<boolean name="banner" value="false"/>
+		</film>
+	</sensor>
+
+
+<!--+========================================+
+    |               Integrator               | 
+    +========================================+-->
+	<integrator type="sppm">
+		<integer name="maxPasses" value="2000"/>
+	</integrator>
+
+
+<!--+========================================+
+    |             Scene Setup                | 
+    +========================================+-->
+    <include filename="./scene_setup.xml"/>
+
+
+<!--+========================================+
+    |           Darkfield Illumination       | 
+    +========================================+-->
+  <shape id="theReflector" type="rectangle">
+    <bsdf type="diffuse">
+      <texture name="reflectance" type="bitmap">
+        <string name="filename" value="../texture/backLightReflector.exr"/>
+      </texture>
+    </bsdf>
+    <transform name="toWorld">
+      <scale x="26" y="70" z="1"/>
+      <rotate y="1" angle="90"/>
+      <translate x="0" y="70" z="0"/>
+      <rotate z="1" angle="81.6"/>
+      <translate x="0" y="-50" z="-22"/>
+    </transform>
+  </shape>
+
+
+<shape id="aPlaneLightSource" type="rectangle">
+  <emitter type="area"><rgb name="radiance" value="5 4.5 3"/></emitter>
+  <boolean name="flipNormals" value="false"/>
+  <transform name="toWorld">
+    <scale x="26" y="40" z="1"/>
+    <rotate y="1" angle="90"/>
+    <rotate z="1" angle="-90"/>
+    <translate x="-65" y="0" z="-22"/>
+    <translate x="0" y="-3.2" z="0"/>
+  </transform>
+</shape>
+
+
+<!--+========================================+
+    |              Orb                       | 
+    +========================================+-->
+	<shape type="sphere" id="external_sphere">
+		<float name="radius" value="6.798"/>
+		<ref id="dielectric"/>
+	</shape>
+
+	<!--1%:6.7300;	2%:6.6620;	3%:6.5941;	5%:6.4581 -->
+	<shape type="sphere" id="interior_sphere">
+		<float name="radius" value="6.6620"/>
+		<boolean name="flipNormals" value="true"/>
+		<ref id="dielectric"/>
+	</shape>
+
+</scene>

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<scene version="0.5.0">
+<!--+========================================+
+    |                 Camera                 | 
+    +========================================+-->
+	<sensor type="perspective" >
+		<float name="fov" value="3.5"/>		
+		<transform name="toWorld">
+			<lookat target="0,0,0" origin="120,0,0" up="0,1,0"/>
+			<translate x="-3" y="-3.192" z="-3.29"/>
+		</transform>
+ 		<film type="hdrfilm">	
+			<integer name="height" value="1024"/>
+            <integer name="width" value="1024"/>
+
+			<rfilter type="gaussian"/>
+			<boolean name="banner" value="false"/>
+		</film>
+	</sensor>
+
+
+<!--+========================================+
+    |               Integrator               | 
+    +========================================+-->
+ 	<integrator type="sppm">
+		<integer name="maxPasses" value="10"/>
+	</integrator>
+		
+
+<!--+========================================+
+    |             Lighting                   | 
+    +========================================+-->
+<include filename="$lighting"/>
+
+
+<!--+========================================+
+    |              Model:defect              | 
+    +========================================+-->
+<shape type="obj" id="outer_sphere">
+	<string name="filename" value="$defect"/>
+	<ref id="dielectric"/>
+</shape>
+
+
+<!--+========================================+
+    |              Orb                       | 
+    +========================================+-->
+	<shape type="sphere" id="interior_sphere">
+		<float name="radius" value="6.6620"/>
+		<boolean name="flipNormals" value="true"/>
+		<ref id="dielectric"/>		
+	</shape>
+
+
+
+
+
+
+</scene>

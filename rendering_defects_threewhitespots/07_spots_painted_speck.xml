@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<scene version="0.5.0">
+<!--+========================================+
+    |                 Camera                 | 
+    +========================================+-->
+	<sensor type="perspective" >
+		<float name="fov" value="7.3"/>		
+		<transform name="toWorld">
+			<lookat target="0,0,0" origin="120,0,0" up="0,1,0"/>
+		</transform>
+ 		<film type="hdrfilm">	
+			<integer name="height" value="512"/>
+            <integer name="width" value="512"/>
+
+			<rfilter type="gaussian"/>
+			<boolean name="banner" value="false"/>
+		</film>
+
+		<sampler type="independent">
+			<integer name="sampleCount" value="1024"/>
+		</sampler>
+	</sensor>
+
+
+<!--+========================================+
+    |               Integrator               | 
+    +========================================+-->
+	<integrator type="volpath"/>
+
+
+<!--+========================================+
+    |             Scene Setup                | 
+    +========================================+-->
+    <include filename="./scene_setup.xml"/>
+
+
+<!--+========================================+
+    |              3D Models                 | 
+    +========================================+-->    
+	<shape type="obj" id="painted_specks">
+		<string name="filename" value="../object/painted_specks.obj"/>
+		<bsdf type="diffuse"><srgb name="reflectance" value="#EEEEEE"/></bsdf>
+	</shape>
+
+	<shape type="sphere" id="orb">
+		<float name="radius" value="6.798"/>
+		<ref id="thindielectric"/>
+	</shape>
+
+</scene>
