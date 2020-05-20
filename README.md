@@ -13,7 +13,7 @@ Output results are HDR files. You can use following software to view HDR files:
 ## Files
 ```text
 salvator_mundi/
-├── component/ /**/
+├── component/
 ├── object/
 ├── texture/
 ├── rendering_defects_threewhitespots/
