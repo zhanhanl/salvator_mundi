@@ -23,12 +23,15 @@ salvator_mundi/
      └── rendering_hollowness/
 ```
 **component**
+
 Commonly used scripts of lighting setups.
 
 **object**
+
 3D models
 
 **texture**
+
 Textures
 
 **rendering_defects_threewhitespots**
