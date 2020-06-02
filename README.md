@@ -8,7 +8,7 @@ This repository contain 3D models, textures, scene setup, codes that have been u
 We used Mitsuba 0.5.0 for the rendering. 
 [Mitsuba 0.5.0](http://www.mitsuba-renderer.org/index_old.html)
 
-Output results are HDR files. You can use following software to view HDR files:
+Outputs are HDR files, which can viewed by the following software:
 [HDR file viewer](https://bitbucket.org/edgarv/hdritools)
 ## Files
 ```text
